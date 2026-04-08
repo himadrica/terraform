@@ -1,0 +1,8 @@
+ibmcloud_api_key    = "YOUR_API_KEY"
+region              = "us-south"
+resource_group_name = "your-existing-resource-group"
+cluster_name        = "my-openshift-cluster"
+ocp_version         = "4.15_openshift"
+worker_pool_flavor  = "bx2.4x16"
+worker_count        = 2
+worker_zones        = ["us-south-1", "us-south-2", "us-south-3"]
