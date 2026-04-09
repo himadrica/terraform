@@ -37,6 +37,11 @@ variable "worker_count" {
   description = "Number of worker nodes per zone"
   type        = number
   default     = 2
+
+  validation {
+    condition     = var.worker_count >= 1
+    error_message = "Worker count must be at least 1 for each zone for high availability."
+  }
 }
 
 variable "cos_instance_name" {
@@ -61,4 +66,35 @@ variable "ocp_entitlement" {
   description = "OpenShift entitlement (set to 'cloud_pak' if using a Cloud Pak entitlement)"
   type        = string
   default     = "cloud_pak"
+}
+
+
+variable "environment" {
+  description = "Environment name (e.g., dev, staging, prod)"
+  type        = string
+  default     = "dev"
+}
+
+variable "tags" {
+  description = "List of tags to apply to all resources"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_monitoring" {
+  description = "Enable monitoring and logging for the cluster"
+  type        = bool
+  default     = false
+}
+
+variable "logdna_instance_id" {
+  description = "LogDNA instance ID for cluster logging (required if enable_monitoring is true)"
+  type        = string
+  default     = ""
+}
+
+variable "sysdig_instance_id" {
+  description = "Sysdig instance ID for cluster monitoring (required if enable_monitoring is true)"
+  type        = string
+  default     = ""
 }
